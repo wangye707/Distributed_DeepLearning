@@ -1,2 +1,2 @@
-# Distributed_DeelLearning
+# Distributed_DeepLearning
 各种分布式深度学习代码
