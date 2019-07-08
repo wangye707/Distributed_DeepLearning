@@ -120,6 +120,7 @@ def main(_):
     elif FLAGS.job_name == "worker":
         with tf.device(tf.train.replica_device_setter(
                 worker_device="/job:worker/task:%d" % FLAGS.task_index,
+
                 cluster=cluster)):
             global_step = tf.Variable(0, name='global_step', trainable=False)
 
@@ -136,7 +137,8 @@ def main(_):
             optimizer = tf.train.GradientDescentOptimizer(learning_rate)
 
             correct_pred = tf.equal(tf.argmax(predy, 1), tf.argmax(y, 1))
-            accuracy = tf.reduce_mean(tf.to_float(correct_pred))
+            accuracy = tf.reduce_mean(tf.to_float(correct_pred)) #
+            # tf.stack
 
             grads_and_vars = optimizer.compute_gradients(loss_value)
             if issync == 1:
